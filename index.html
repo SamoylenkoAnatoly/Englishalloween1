@@ -39,7 +39,13 @@ a.card .pk{font-size:13px;color:var(--dim)}
 background:radial-gradient(720px 400px at 62% 0%,#251b4a 0%,#1c1240 75%);
 border:2px solid var(--line);border-radius:20px}
 .mapbox svg{position:absolute;inset:0}
-.mapbox .zr{fill:var(--panel);stroke:var(--line);stroke-width:2}
+.mapbox .pad{fill:#221843;opacity:.5;stroke:#3c2d6b;stroke-width:1.5}
+.mapbox .skyh{fill:#130d28}
+.mapbox .win{fill:#ffd76b;filter:drop-shadow(0 0 4px rgba(255,215,107,.55))}
+.mapbox .wf{stroke:#3c2d6b;stroke-width:1}
+.mapbox .road{fill:none;stroke:#150e30;stroke-width:18;stroke-linecap:round;opacity:.55}
+.mapbox .note{fill:#b9aed6}
+.mapbox .sgn{fill:#ffb84d;font-size:10px;font-weight:800;letter-spacing:1px}
 .mapbox .zn{fill:var(--pu);font-size:12px;font-weight:700;letter-spacing:1.5px}
 .mapbox .zt{fill:var(--tx);font-size:15px;font-weight:700}
 .mapbox .trail{fill:none;stroke:var(--or);stroke-width:4;stroke-linecap:round;stroke-dasharray:1 13;opacity:.8}
@@ -136,7 +142,8 @@ document.querySelectorAll('a.stop').forEach(function(c){var p=pk(c.dataset.l),a=
 if(a===5){c.classList.add('done');var im=c.querySelector('img.pump');if(im)im.src='assets/decor/pump-card-lit.png'}
 if(a<5&&!first)first=c;last=c});
 var b=document.getElementById('bmark'),t=first||last;
-if(b&&t){b.style.left=(t.offsetLeft+t.offsetWidth/2-21)+'px';b.style.top=(t.offsetTop+104)+'px';b.style.display='block'}}
+if(b&&t){var ty=t.offsetTop+104;if(ty+44>mb.clientHeight)ty=t.offsetTop-50;
+b.style.left=(t.offsetLeft+t.offsetWidth/2-21)+'px';b.style.top=ty+'px';b.style.display='block'}}
 </script>
 </body>
 </html>
