@@ -43,7 +43,8 @@ padding:18px}
 section.panel.on{display:block}
 .sline{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px dashed var(--line)}
 .sline:last-child{border-bottom:none}
-.sline .en{font-size:18px;flex:1}
+.sline .stext{flex:1;min-width:0}
+.sline .en{font-size:18px}
 .sline .ru{font-size:15px;color:var(--dim);display:none;margin-top:4px}
 .sline.open .ru{display:block}
 .storywrap{display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap;margin:2px 0 8px}
@@ -250,10 +251,11 @@ left.appendChild(simg);h.appendChild(left);
 var pp=el('div','paper');
 pp.appendChild(el('h2','h2','Глава '+L.mod_n+' · часть урока'));
 L.story.forEach(function(l,i){var d=el('div','sline');d.appendChild(spkBtn(l.en));
-d.appendChild(el('p','en',l.en));var r=el('button','rev','перевод');r.type='button';
+var st=el('div','stext');st.appendChild(el('p','en',l.en));
+var r=el('button','rev','перевод');r.type='button';
 r.onclick=function(){d.className='sline open';r.style.display='none';opened[i]=1;
-if(Object.keys(opened).length===n)fin.disabled=false};d.appendChild(r);
-var ru=el('div','ru',l.ru);d.appendChild(ru);pp.appendChild(d)});
+if(Object.keys(opened).length===n)fin.disabled=false};st.appendChild(r);
+var ru=el('div','ru',l.ru);st.appendChild(ru);d.appendChild(st);pp.appendChild(d)});
 var fin=el('button','btn gr','Я всё прочитал! 🎃');fin.type='button';fin.disabled=true;
 fin.onclick=function(){award('story','🎃 Ты прочитал часть главы!')};pp.appendChild(fin);
 h.appendChild(pp);p.appendChild(h)}
