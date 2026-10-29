@@ -34,40 +34,40 @@ a.card .pk{font-size:13px;color:var(--dim)}
 .map-head{margin:28px 0 10px;text-align:center}
 .map-head h2{font-size:22px;color:var(--or)}
 .map-head p{color:var(--dim);font-size:14px;margin-top:4px}
-.map-scroll{overflow-x:auto;padding:8px 0 16px}
-.mapbox{position:relative;width:1100px;height:730px;margin:0 auto;
-background:radial-gradient(720px 400px at 62% 0%,#251b4a 0%,#1c1240 75%);
+.map-scroll{padding:8px 0 16px}
+.mapbox{position:relative;width:100%;max-width:760px;aspect-ratio:760/1220;margin:0 auto;
+background:radial-gradient(70% 45% at 60% 0%,#251b4a 0%,#1c1240 75%);
 border:2px solid var(--line);border-radius:20px}
-.mapbox svg{position:absolute;inset:0}
-.mapbox .mst{fill:#ffb84d;font-size:12px;font-weight:700}
-.mapbox .mss{fill:#b9aed6;font-size:9px;font-weight:700;letter-spacing:1px}
+.mapbox svg{position:absolute;inset:0;width:100%;height:100%}
+.mapbox .mst{fill:#ffb84d;font-size:19px;font-weight:700}
+.mapbox .mss{fill:#b9aed6;font-size:14px;font-weight:700;letter-spacing:1px}
 .mapbox .fab{fill:#241a44;stroke:#3c2d6b;stroke-width:2}
 .mapbox .win{fill:#ffd76b;filter:drop-shadow(0 0 4px rgba(255,215,107,.55))}
 .mapbox .wf{stroke:#3c2d6b;stroke-width:1}
 .mapbox .road{fill:none;stroke:#2e2557;stroke-width:20;stroke-linecap:butt;stroke-dasharray:16 6;opacity:.95}
 .mapbox svg image{image-rendering:pixelated}
 .mapbox .note{fill:#b9aed6}
-.mapbox .sgn{fill:#ffb84d;font-size:10px;font-weight:800;letter-spacing:1px}
+.mapbox .sgn{fill:#ffb84d;font-size:16px;font-weight:800;letter-spacing:1px}
 .mapbox .trail{fill:none;stroke:var(--or);stroke-width:5;stroke-linecap:butt;stroke-dasharray:4 11;opacity:.8}
 .mapbox .gfloat{animation:bob 5s ease-in-out infinite}
 .mapbox .lamp{fill:#ffb84d;filter:drop-shadow(0 0 6px rgba(255,176,32,.9))}
 .mapbox .glow{filter:drop-shadow(0 0 14px rgba(255,214,64,.5))}
 .mapbox .mstar{opacity:.45;animation:tw 3s ease-in-out infinite}
-a.stop{position:absolute;width:80px;margin-left:-40px;text-align:center;text-decoration:none;color:var(--tx);border-radius:12px}
+a.stop{position:absolute;width:11.5%;margin-left:-5.75%;text-align:center;text-decoration:none;color:var(--tx);border-radius:12px;padding:2px 0}
 a.stop:focus{outline:2px dashed var(--or);outline-offset:3px}
-a.stop .pump{width:58px;height:68px;image-rendering:pixelated;
-filter:drop-shadow(0 5px 8px rgba(0,0,0,.55));transition:transform .15s}
+a.stop .pump{width:66%;aspect-ratio:29/34;image-rendering:pixelated;
+filter:drop-shadow(0 4px 6px rgba(0,0,0,.55));transition:transform .15s}
 a.stop:hover .pump{transform:translateY(-5px) scale(1.08)}
-a.stop .num{display:block;font-weight:800;font-size:13px;margin-top:2px}
-a.stop .pk{display:block;font-size:11px;color:var(--dim)}
-a.stop.done .pump{filter:drop-shadow(0 0 12px rgba(255,176,32,.85))}
-a.stop .tip{display:none;position:absolute;bottom:calc(100% - 6px);left:50%;transform:translateX(-50%);
-background:var(--panel);border:2px solid var(--or);padding:5px 10px;border-radius:10px;
-white-space:nowrap;font-size:13px;font-weight:700;z-index:9;pointer-events:none}
+a.stop .num{display:block;font-weight:800;font-size:20px;margin-top:2px;line-height:1.1}
+a.stop .pk{display:block;font-size:15px;color:var(--dim);line-height:1.1}
+a.stop.done .pump{filter:drop-shadow(0 0 10px rgba(255,176,32,.85))}
+a.stop .tip{display:none;position:absolute;bottom:calc(100% - 4px);left:50%;transform:translateX(-50%);
+background:var(--panel);border:3px solid var(--or);color:var(--tx);padding:6px 12px;border-radius:12px;
+white-space:nowrap;font-size:19px;font-weight:700;z-index:9;pointer-events:none}
 a.stop .tip-l{left:0;transform:none}
 a.stop .tip-r{left:auto;right:0;transform:none}
 a.stop:hover .tip,a.stop:focus .tip{display:block}
-#bmark{position:absolute;width:42px;height:42px;image-rendering:pixelated;border-radius:10px;
+#bmark{position:absolute;width:5.6%;aspect-ratio:1;image-rendering:pixelated;border-radius:15%;
 border:2px solid var(--or);background:#000;display:none;z-index:3;animation:bob 2.6s ease-in-out infinite}
 footer{text-align:center;color:var(--dim);font-size:12px;margin-top:34px}
 .decor{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
@@ -141,9 +141,12 @@ document.querySelectorAll('a.stop').forEach(function(c){var p=pk(c.dataset.l),a=
 ['story','words','memory','anagram','quiz'].forEach(function(x){if(p[x])a++});
 if(a===5){c.classList.add('done');var im=c.querySelector('img.pump');if(im)im.src='assets/decor/pump-card-lit.png'}
 if(a<5&&!first)first=c;last=c});
-var b=document.getElementById('bmark'),t=first||last;
-if(b&&t){var ty=t.offsetTop+104;if(ty+44>mb.clientHeight)ty=t.offsetTop-50;
-b.style.left=(t.offsetLeft+t.offsetWidth/2-21)+'px';b.style.top=ty+'px';b.style.display='block'}}
+var b=document.getElementById('bmark');
+function bp(){var t=first||last;if(!b||!t)return;
+var ty=t.offsetTop+104;if(ty+44>mb.clientHeight)ty=t.offsetTop-50;
+b.style.left=((t.offsetLeft+t.offsetWidth/2)/mb.clientWidth*100-2.8)+'%';
+b.style.top=(ty/mb.clientHeight*100)+'%';b.style.display='block'}
+bp();window.addEventListener('resize',bp)}
 </script>
 </body>
 </html>
