@@ -36,29 +36,31 @@ a.card .pk{font-size:13px;color:var(--dim)}
 .map-head p{color:var(--dim);font-size:14px;margin-top:4px}
 .map-scroll{padding:8px 0 16px}
 .mapbox{position:relative;width:100%;max-width:760px;aspect-ratio:760/1220;margin:0 auto;
-background:radial-gradient(70% 45% at 60% 0%,#251b4a 0%,#1c1240 75%);
+background:radial-gradient(70% 45% at 60% 0%,#221748 0%,#150e30 75%);
 border:2px solid var(--line);border-radius:20px}
 .mapbox svg{position:absolute;inset:0;width:100%;height:100%}
 .mapbox .mst{fill:#ffb84d;font-size:19px;font-weight:700}
 .mapbox .mss{fill:#b9aed6;font-size:14px;font-weight:700;letter-spacing:1px}
 .mapbox .fab{fill:#241a44;stroke:#3c2d6b;stroke-width:2}
-.mapbox .win{fill:#ffd76b;filter:drop-shadow(0 0 4px rgba(255,215,107,.55))}
-.mapbox .wf{stroke:#3c2d6b;stroke-width:1}
-.mapbox .road{fill:none;stroke:#2e2557;stroke-width:20;stroke-linecap:butt;stroke-dasharray:16 6;opacity:.95}
+.mapbox .win{fill:#ffd76b;filter:drop-shadow(0 0 4px rgba(255,215,107,.55));animation:winf 3.4s ease-in-out infinite}
+.mapbox .wf{stroke:#17102b;stroke-width:1}
+.mapbox .roadc{fill:none;stroke:#110b24;stroke-width:28;stroke-linecap:butt}
+.mapbox .road{fill:none;stroke:#3d2f74;stroke-width:22;stroke-linecap:butt}
+.mapbox .rdd{fill:none;stroke:#241a44;stroke-width:4;stroke-linecap:butt;stroke-dasharray:8 14}
 .mapbox svg image{image-rendering:pixelated}
 .mapbox .note{fill:#b9aed6}
 .mapbox .sgn{fill:#ffb84d;font-size:16px;font-weight:800;letter-spacing:1px}
 .mapbox .trail{fill:none;stroke:var(--or);stroke-width:5;stroke-linecap:butt;stroke-dasharray:4 11;opacity:.8}
 .mapbox .gfloat{animation:bob 5s ease-in-out infinite}
-.mapbox .lamp{fill:#ffb84d;filter:drop-shadow(0 0 6px rgba(255,176,32,.9))}
+.mapbox .lamp{fill:#ffb84d;filter:drop-shadow(0 0 6px rgba(255,176,32,.9));animation:lampf 2.8s ease-in-out infinite}
 .mapbox .glow{filter:drop-shadow(0 0 14px rgba(255,214,64,.5))}
-.mapbox .mstar{opacity:.45;animation:tw 3s ease-in-out infinite}
+.mapbox .mstar{opacity:.7;animation:tw 3s ease-in-out infinite}
 a.stop{position:absolute;width:11.5%;margin-left:-5.75%;text-align:center;text-decoration:none;color:var(--tx);border-radius:12px;padding:2px 0}
 a.stop:focus{outline:2px dashed var(--or);outline-offset:3px}
 a.stop .pump{width:66%;aspect-ratio:29/34;image-rendering:pixelated;
 filter:drop-shadow(0 4px 6px rgba(0,0,0,.55));transition:transform .15s}
 a.stop:hover .pump{transform:translateY(-5px) scale(1.08)}
-a.stop .num{display:block;font-weight:800;font-size:20px;margin-top:2px;line-height:1.1}
+a.stop .num{display:block;font-weight:800;font-size:20px;margin-top:2px;line-height:1.1;color:#fff}
 a.stop .pk{display:block;font-size:15px;color:var(--dim);line-height:1.1}
 a.stop.done .pump{filter:drop-shadow(0 0 10px rgba(255,176,32,.85))}
 a.stop .tip{display:none;position:absolute;bottom:calc(100% - 4px);left:50%;transform:translateX(-50%);
@@ -90,6 +92,8 @@ footer{text-align:center;color:var(--dim);font-size:12px;margin-top:34px}
 @keyframes sway{0%,100%{transform:rotate(7deg)}50%{transform:rotate(-7deg)}}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-16px)}}
 @keyframes tw{0%,100%{opacity:.08}50%{opacity:.95}}
+@keyframes winf{0%,100%{opacity:1}50%{opacity:.72}}
+@keyframes lampf{0%,100%{opacity:1}45%{opacity:.8}55%{opacity:.95}70%{opacity:.7}}
 @keyframes fly1{0%{transform:translate(-80px,0)}25%{transform:translate(28vw,-24px)}
  50%{transform:translate(58vw,10px)}75%{transform:translate(84vw,-18px)}
  100%{transform:translate(calc(100vw + 90px),0)}}
@@ -100,7 +104,7 @@ footer{text-align:center;color:var(--dim);font-size:12px;margin-top:34px}
  65%{transform:translate(66vw,-10px)}100%{transform:translate(calc(100vw + 90px),6px)}}
 @keyframes fly4{0%{transform:translate(calc(100vw + 90px),0)}40%{transform:translate(55vw,-14px)}
  70%{transform:translate(20vw,10px)}100%{transform:translate(-90px,-4px)}}
-@media(prefers-reduced-motion:reduce){.decor img{animation:none!important}}
+@media(prefers-reduced-motion:reduce){.decor img,.mapbox .win,.mapbox .lamp{animation:none!important}}
 </style>
 </head>
 <body>
@@ -143,7 +147,7 @@ if(a===5){c.classList.add('done');var im=c.querySelector('img.pump');if(im)im.sr
 if(a<5&&!first)first=c;last=c});
 var b=document.getElementById('bmark');
 function bp(){var t=first||last;if(!b||!t)return;
-var ty=t.offsetTop+104;if(ty+44>mb.clientHeight)ty=t.offsetTop-50;
+var ty=t.offsetTop+110;if(ty+44>mb.clientHeight)ty=t.offsetTop-50;
 b.style.left=((t.offsetLeft+t.offsetWidth/2)/mb.clientWidth*100-2.8)+'%';
 b.style.top=(ty/mb.clientHeight*100)+'%';b.style.display='block'}
 bp();window.addEventListener('resize',bp)}
